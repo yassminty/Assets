@@ -25,4 +25,14 @@ Credits:
 assets used:
 - https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153
 - Image by mrsiraphol on Freepik https://www.freepik.com/free-photo/white-bricks-wall-texture_974611.htm#fromView=search&page=1&position=5&uuid=18af53d8-fdbf-41df-a6cc-231d6f5d2775&query=wall
-- 
+
+
+things to do on fri:
+update github
+have collisions for 5 interactable items
+have different sceneries between door [inside house/outside house]
+make a pool that the player will be hurt if he step inside
+ui to display user score
+ui to congrats user after collecting all collectibles
+scripts must be commented properly
+bgm is included
