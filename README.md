@@ -18,7 +18,7 @@ Spacebar = Jump
 E/LMB = Interact
 
 Limitations:
-- controls might still be a little wonky
+- end screen might not pop out
 - the door might be slightly harder to open as it is abit heavy
 
 

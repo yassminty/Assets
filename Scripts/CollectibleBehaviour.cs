@@ -5,10 +5,12 @@ using TMPro;
 public class CollectibleBehaviour : MonoBehaviour
 {
     private int heartValue = 5; //so amount cant be changed externally
-
     public TextMeshProUGUI Score; //using tmpro for ui stuff
+    public GameObject endScreen;
+    public int collectedHearts = 0;
+    public int totalHearts = 6;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Heart")
         {
@@ -16,7 +18,18 @@ public class CollectibleBehaviour : MonoBehaviour
             Score.text = "Score: " + heartValue.ToString(); //updates score for player after they interact with the items
             Debug.Log(heartValue); //just to write out in console if it works lol
             Destroy(other.gameObject); //collectible willbe destroyed after user is done interacting with it
+        }
 
+        else if (other.CompareTag("Player"))
+        {
+            collectedHearts++;
+
+            if (collectedHearts >= totalHearts && endScreen != null)
+            {
+                endScreen.SetActive(true);
+            }
+
+            Destroy(gameObject);
         }
     }
 }
