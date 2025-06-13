@@ -7,8 +7,8 @@ public class CollectibleBehaviour : MonoBehaviour
     private int heartValue = 5; //so amount cant be changed externally
     public TextMeshProUGUI Score; //using tmpro for ui stuff
     public GameObject endScreen;
-    public int collectedHearts = 0;
-    public int totalHearts = 6;
+    public static int collectedHearts = 0;
+    public static int totalHearts = 5;
 
     void OnTriggerEnter(Collider other)
     {
@@ -19,17 +19,18 @@ public class CollectibleBehaviour : MonoBehaviour
             Debug.Log(heartValue); //just to write out in console if it works lol
             Destroy(other.gameObject); //collectible willbe destroyed after user is done interacting with it
         }
-
+//make collectible item counter go higher and will show end screen when collected every item
         else if (other.CompareTag("Player"))
         {
             collectedHearts++;
 
-            if (collectedHearts >= totalHearts && endScreen != null)
+            if (collectedHearts >= totalHearts) //&& endScreen != null)
             {
-                endScreen.SetActive(true);
+                endScreen.SetActive(true); //opens congrats screen
+                Debug.Log("everything collected already");
             }
 
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 }

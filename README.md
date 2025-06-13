@@ -30,11 +30,11 @@ assets used:
 
 
 things to do on fri:
--   update github
+-   update github [done]
 -   have collisions for 5 interactable items [done]
 -   have different sceneries between door [inside house/outside house] [done]
--   make a pool that the player will be hurt if he step inside
+-   make a pool that the player will be hurt if he step inside [done]
 -   ui to display user score [done]
--   ui to congrats user after collecting all collectibles
+-   ui to congrats user after collecting all collectibles [meh]
 -   scripts must be commented properly [done]
 -   bgm is included [done]
