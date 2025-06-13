@@ -5,142 +5,70 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public int maxHealth = 100; //players starting health
     int currentScore = 0; //players score at the moment
+    bool canInteract = false;
+    DoorBehaviour currentDoor = null;
+    CollectibleBehaviour currentHeart = null;
+
+    //make sure that the player can interact with the objects and not mess this up PLEASE T-T
+    void OnInteract()
+    {
+        if (canInteract)
+        {
+            if (currentHeart != null)
+            {
+                Debug.Log("please get the heart");
+                //currentHeart.Collect(this);
+            }
+
+            else if (currentDoor != null)
+            {
+                Debug.Log("open sesame");
+                currentDoor.Interact();
+            }
+        }
+    }
+
+    // increase score of player wehn they interact with the collectible i set up for them
+    public void ChangeScore(int amount)
+    {
+        currentScore += amount;
+    }
+
+
+// if player touches/presses enter on the object the object will be interacted ah if im not wrong...
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
+        
+// if object is the collectible, the player will be able to collect them and interact with them
+        if (other.CompareTag("Heart"))
+        {
+            canInteract = true;
+            currentHeart = other.GetComponent<CollectibleBehaviour>();
+        }
+
+// if object is the door, the player will be able interact with it
+        else if (other.CompareTag("Door"))
+        {
+            canInteract = true;
+            currentDoor = other.GetComponent<DoorBehaviour>();
+        }
+    }
+
+//when player hit collider of items [door/collectible]
+        void OnTriggerExit(Collider other)
+        {
+// see if player is nearby the thing , they will interact ah
+            if (currentHeart != null)
+            {
+                // If the object that exited the trigger is the same as the current coin
+                if (other.gameObject == currentHeart.gameObject)
+                {
+                    canInteract = false; //stop making the player ointeract with them
+                    currentHeart = null;
+                }
+            }
+        }
     
-    
-    //public class PlayerBehaviour : MonoBehaviour
-    // public GameObject projectile;
-    // public Transform gunPoint;
-    // public float firePower = 5f;
-
-
-    // // Player's maximum health
-    // int maxHealth = 100;
-    // // Player's current health
-    // int currentHealth = 100;
-    // // Player's current score
-    //     int currentScore = 0;
-    //     // Flag to check if the player can interact with objects
-    //     bool canInteract = false;
-    //     // Stores the current coin object the player has detected
-    //     CoinBehaviour currentCoin = null;
-    //     DoorBehaviour currentDoor = null;
-
-
-    //     // The Interact callback for the Interact Input Action
-    //     // This method is called when the player presses the interact button
-    //     void OnInteract()
-    //     {
-    //         // Check if the player can interact with objects
-    //         if (canInteract)
-    //         {
-    //             // Check if the player has detected a coin or a door
-    //             if (currentCoin != null)
-    //             {
-    //                 Debug.Log("Interacting with coin");
-    //                 // Call the Collect method on the coin object
-    //                 // Pass the player object as an argument
-    //                 currentCoin.Collect(this);
-
-    //             }
-    //             else if (currentDoor != null)
-    //             {
-    //                 Debug.Log("Interacting with door");
-    //                 currentDoor.Interact();
-    //             }
-    //         }
-    //     }
-
-
-    //     void OnFire()
-    //     {
-    //         Debug.Log("firing shots");
-    //         //Instantiate(projectile, gunPoint.transform.position, projectile.transform.rotation);
-    //         var bullet = Instantiate(projectile, gunPoint.transform.position, projectile.transform.rotation);
-    //         var rigidBody = bullet.GetComponent<Rigidbody>();
-    //         var fireForce = transform.forward * firePower;
-    //         rigidBody.AddForce(fireForce);
-
-    //     }
-
-    //     // Method to modify the player's score
-    //     // This method takes an integer amount as a parameter
-    //     // It adds the amount to the player's current score
-    //     // The method is public so it can be accessed from other scripts
-    //     public void ModifyScore(int amt)
-    //     {
-    //         // Increase currentScore by the amount passed as an argument
-    //         currentScore += amt;
-    //     }
-
-    //     // Method to modify the player's health
-    //     // This method takes an integer amount as a parameter
-    //     // It adds the amount to the player's current health
-    //     // The method is public so it can be accessed from other scripts
-    //     public void ModifyHealth(int amount)
-    //     {
-    //         // Check if the current health is less than the maximum health
-    //         // If it is, increase the current health by the amount passed as an argument
-    //         if (currentHealth < maxHealth)
-    //         {
-    //             currentHealth += amount;
-    //             // Check if the current health exceeds the maximum health
-    //             // If it does, set the current health to the maximum health
-    //             if (currentHealth > maxHealth)
-    //             {
-    //                 currentHealth = maxHealth;
-    //             }
-    //         }
-    //     }
-
-    //     // Collision Callback for when the player collides with another object
-    //     void OnCollisionStay(Collision collision)
-    //     {
-    //         // Check if the player collides with an object tagged as "HealingArea"
-    //         // If it does, call the RecoverHealth method on the object
-    //         // Pass the player object as an argument
-    //         // This allows the player to recover health when in a healing area
-    //         if (collision.gameObject.CompareTag("HealingArea"))
-    //         {
-    //             collision.gameObject.GetComponent<RecoveryBehaviour>().RecoverHealth(this);
-    //         }
-    //     }
-
-    //     // Trigger Callback for when the player enters a trigger collider
-    //     void OnTriggerEnter(Collider other)
-    //     {
-    //         Debug.Log(other.gameObject.name);
-    //         // Check if the player detects a trigger collider tagged as "Collectible" or "Door"
-    //         if (other.CompareTag("Collectible"))
-    //         {
-    //             // Set the canInteract flag to true
-    //             // Get the CoinBehaviour component from the detected object
-    //             canInteract = true;
-    //             currentCoin = other.GetComponent<CoinBehaviour>();
-    //         }
-    //         else if (other.CompareTag("Door"))
-    //         {
-    //             canInteract = true;
-    //             currentDoor = other.GetComponent<DoorBehaviour>();
-    //         }
-    //     }
-
-    //     // Trigger Callback for when the player exits a trigger collider
-    //     void OnTriggerExit(Collider other)
-    //     {
-    //         // Check if the player has a detected coin or door
-    //         if (currentCoin != null)
-    //         {
-    //             // If the object that exited the trigger is the same as the current coin
-    //             if (other.gameObject == currentCoin.gameObject)
-    //             {
-    //                 // Set the canInteract flag to false
-    //                 // Set the current coin to null
-    //                 // This prevents the player from interacting with the coin
-    //                 canInteract = false;
-    //                 currentCoin = null;
-    //             }
-    //         }
-    //     }
-    // }
 
 }

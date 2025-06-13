@@ -18,21 +18,23 @@ Spacebar = Jump
 E/LMB = Interact
 
 Limitations:
-controls might still be a little wonky. the door might over-open. score & health count might not work because there is might be something wrong with the script. the collectibles might not be able to be collected.
+- controls might still be a little wonky
+- the door might be slightly harder to open as it is abit heavy
 
 
 Credits:
 assets used:
 - https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153
 - Image by mrsiraphol on Freepik https://www.freepik.com/free-photo/white-bricks-wall-texture_974611.htm#fromView=search&page=1&position=5&uuid=18af53d8-fdbf-41df-a6cc-231d6f5d2775&query=wall
+- Music by Ievgen Poltavskyi from Pixabay 
 
 
 things to do on fri:
-update github
-have collisions for 5 interactable items
-have different sceneries between door [inside house/outside house]
-make a pool that the player will be hurt if he step inside
-ui to display user score
-ui to congrats user after collecting all collectibles
-scripts must be commented properly
-bgm is included
+-   update github
+-   have collisions for 5 interactable items [done]
+-   have different sceneries between door [inside house/outside house] [done]
+-   make a pool that the player will be hurt if he step inside
+-   ui to display user score [done]
+-   ui to congrats user after collecting all collectibles
+-   scripts must be commented properly [done]
+-   bgm is included [done]
