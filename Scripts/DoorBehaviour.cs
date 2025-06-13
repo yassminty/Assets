@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// making door move 
 public class DoorBehaviour : MonoBehaviour
 {
     public void Interact()
